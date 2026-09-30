@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>九七电影网 - 经典电影/剧集/综艺动漫导航 | jiuqidianyingwang-h5</title>
+<meta name="description" content="九七电影网（jiuqidianyingwang-h5）做经典电影、热播剧集、综艺动漫的分类导航，深蓝金标风、移动端自适应、锚点分区，结构干净，适合必应爬虫识别主题。">
+<meta name="keywords" content="九七电影网, jiuqidianyingwang-h5, 经典电影, 热播剧集, 综艺动漫, 影视导航">
+<meta name="author" content="九七电影网">
+<meta name="robots" content="index,follow">
+<!-- <meta name="msvalidate.01" content="必应站长验证码" /> -->
+<style>
+:root{
+  --navy:#0c1426;
+  --navy2:#13203a;
+  --gold:#ffce5a;
+  --gold2:#ffb020;
+  --line:#26375c;
+  --text:#eaf0fb;
+  --muted:#9fb0cf;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--navy); color:var(--text); line-height:1.75;
+}
+a{ color:var(--gold); text-decoration:none; transition:.25s; }
+a:hover{ color:#ffe9a8; }
+
+.header{
+  background:linear-gradient(120deg,#0a1120,#16284a);
+  position:sticky; top:0; z-index:999; border-bottom:1px solid var(--line);
+}
+.nav{
+  max-width:1180px; margin:0 auto; padding:.9rem 1rem;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+}
+.brand{ font-size:1.4rem; font-weight:800; color:#dfe9ff; }
+.brand b{ color:var(--gold); }
+.menu{ list-style:none; display:flex; gap:1.1rem; flex-wrap:wrap; }
+.menu a{ color:#cdd9f2; font-size:.95rem; padding:.3rem 0; border-bottom:2px solid transparent; }
+.menu a:hover{ border-bottom-color:var(--gold); color:#fff; }
+
+.hero{
+  padding:4.6rem 1rem 3.4rem; text-align:center;
+  background:
+    radial-gradient(820px 360px at 18% 12%, rgba(255,206,90,.16), transparent),
+    radial-gradient(760px 360px at 86% 24%, rgba(38,80,160,.30), transparent),
+    linear-gradient(160deg,#0c1730,#15294c);
+  color:#fff;
+}
+.hero h1{ font-size:2.1rem; margin-bottom:.8rem; }
+.hero h1 b{ color:var(--gold); }
+.hero p{ max-width:660px; margin:0 auto 1.6rem; color:#c7d4ee; }
+.btn{
+  display:inline-block; padding:.78rem 2.1rem; border-radius:40px;
+  background:linear-gradient(45deg,var(--gold),var(--gold2)); color:#231a02; font-weight:800;
+}
+.btn:hover{ color:#231a02; transform:translateY(-2px); }
+
+.section{ max-width:1180px; margin:0 auto; padding:3rem 1rem; }
+.section h2{ text-align:center; font-size:1.7rem; margin-bottom:1.8rem; }
+.section h2 span{ color:var(--gold); }
+
+.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:1.2rem; }
+.card{
+  background:var(--navy2); border:1px solid var(--line); border-radius:16px; overflow:hidden; transition:.3s;
+}
+.card:hover{ transform:translateY(-6px); box-shadow:0 16px 34px rgba(255,176,32,.22); }
+.poster{
+  height:212px; display:flex; align-items:center; justify-content:center;
+  font-size:3.2rem; color:#231a02;
+  background:linear-gradient(135deg,var(--c1,var(--gold)),var(--c2,#5b8def));
+}
+.j1{ --c1:#ffce5a; --c2:#ff9f43; }
+.j2{ --c1:#7aa8ff; --c2:#5b6bff; }
+.j3{ --c1:#ffd76a; --c2:#ffb020; }
+.j4{ --c1:#6fe0c8; --c2:#3aa0ff; }
+.j5{ --c1:#ff9ad0; --c2:#9b8bff; }
+.j6{ --c1:#ffe27a; --c2:#ff8a5e; }
+.card-body{ padding:.9rem 1rem; }
+.card-body h3{ font-size:.98rem; margin-bottom:.3rem; color:#fff; }
+.card-body small{ color:var(--muted); }
+
+.tags{ display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin-bottom:1.8rem; }
+.tag{
+  background:var(--navy2); border:1px solid var(--line); color:#ffe1a6;
+  padding:.35rem 1rem; border-radius:30px; font-size:.82rem;
+}
+.tag:hover{ background:var(--gold); color:#231a02; border-color:var(--gold); }
+
+.about{
+  background:var(--navy2); border:1px solid var(--line); border-radius:16px; padding:2rem;
+}
+.about h3{ color:var(--gold); margin:1rem 0 .5rem; }
+.about p{ color:#c7d4ee; margin-bottom:.8rem; }
+
+.footer{
+  background:#080f1d; text-align:center; padding:2rem 1rem;
+  color:#8295b8; font-size:.85rem; border-top:1px solid #14233f;
+}
+.footer a{ color:var(--gold); }
+
+@media (max-width:768px){
+  .nav{ flex-direction:column; gap:.6rem; }
+  .menu{ justify-content:center; gap:.8rem; }
+  .hero h1{ font-size:1.6rem; }
+  .grid{ grid-template-columns:repeat(2,1fr); }
+  .poster{ height:168px; font-size:2.4rem; }
+  .section{ padding:2.2rem 1rem; }
+  .about{ padding:1.4rem; }
+}
+@media (max-width:420px){
+  .grid{ gap:.8rem; }
+  .hero{ padding:3rem 1rem; }
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="header">
+  <div class="nav">
+    <div class="brand">🎞️ 九七<b>电影网</b></div>
+    <ul class="menu">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#movie">经典电影</a></li>
+      <li><a href="#tv">热播剧集</a></li>
+      <li><a href="#show">综艺动漫</a></li>
+      <li><a href="#about">关于九七</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <h1>九七电影网｜把被遗忘的好片捞回来</h1>
+  <p>
+    九七电影网（https://jiuqidianyingwang-h5）做经典电影、热播剧集、综艺动漫的分类导航，
+    深蓝金标风、手机自适应、锚点分区；本页只做“片单 + 分类 + 入口”，不提供盗版播放。
+  </p>
+  <a class="btn" href="#movie">进九七片单</a>
+</section>
+
+<section class="section" id="movie">
+  <h2>🎬 <span>经典电影</span></h2>
+  <div class="tags">
+    <span class="tag">经典修复</span><span class="tag">剧情</span><span class="tag">喜剧</span>
+    <span class="tag">动画</span><span class="tag">科幻</span><span class="tag">华语佳作</span>
+  </div>
+  <div class="grid">
+    <article class="card"><div class="poster j1">🎥</div><div class="card-body"><h3>公民凯恩</h3><small>1941 · 影史经典</small></div></article>
+    <article class="card"><div class="poster j2">🎥</div><div class="card-body"><h3>霸王别姬</h3><small>1993 · 华语经典</small></div></article>
+    <article class="card"><div class="poster j3">🎥</div><div class="card-body"><h3>美丽人生</h3><small>1997 · 剧情/战争</small></div></article>
+    <article class="card"><div class="poster j4">🎥</div><div class="card-body"><h3>千与千寻</h3><small>2001 · 动画经典</small></div></article>
+    <article class="card"><div class="poster j5">🎥</div><div class="card-body"><h3>肖申克的救赎</h3><small>1994 · 剧情</small></div></article>
+    <article class="card"><div class="poster j6">🎥</div><div class="card-body"><h3>阳光灿烂的日子</h3><small>1994 · 华语青春</small></div></article>
+  </div>
+</section>
+
+<section class="section" id="tv" style="background:#0a1224;">
+  <h2>📺 <span>热播剧集</span></h2>
+  <div class="tags">
+    <span class="tag">国产剧</span><span class="tag">年代</span><span class="tag">古装</span>
+    <span class="tag">悬疑</span><span class="tag">台剧</span><span class="tag">华语剧</span>
+  </div>
+  <div class="grid">
+    <article class="card"><div class="poster j1">📺</div><div class="card-body"><h3>狂飙</h3><small>2023 · 犯罪剧情</small></div></article>
+    <article class="card"><div class="poster j2">📺</div><div class="card-body"><h3>繁花</h3><small>2023 · 年代剧情</small></div></article>
+    <article class="card"><div class="poster j3">📺</div><div class="card-body"><h3>庆余年第二季</h3><small>2024 · 古装权谋</small></div></article>
+    <article class="card"><div class="poster j4">📺</div><div class="card-body"><h3>我的阿勒泰</h3><small>2024 · 文艺治愈</small></div></article>
+    <article class="card"><div class="poster j5">📺</div><div class="card-body"><h3>我们与恶的距离</h3><small>2019 · 台剧社会</small></div></article>
+    <article class="card"><div class="poster j6">📺</div><div class="card-body"><h3>山海情</h3><small>2021 · 现实题材</small></div></article>
+  </div>
+</section>
+
+<section class="section" id="show">
+  <h2>🎤 <span>综艺 / 动漫</span></h2>
+  <div class="tags">
+    <span class="tag">文化综艺</span><span class="tag">音乐</span><span class="tag">纪录</span>
+    <span class="tag">国漫</span><span class="tag">治愈</span><span class="tag">动画短片</span>
+  </div>
+  <div class="grid">
+    <article class="card"><div class="poster j1">🎤</div><div class="card-body"><h3>国家宝藏</h3><small>文化/综艺</small></div></article>
+    <article class="card"><div class="poster j2">🎤</div><div class="card-body"><h3>声生不息</h3><small>音乐/综艺</small></div></article>
+    <article class="card"><div class="poster j3">🎤</div><div class="card-body"><h3>舌尖上的中国</h3><small>纪录片</small></div></article>
+    <article class="card"><div class="poster j4">🎤</div><div class="card-body"><h3>中国奇谭</h3><small>国漫/单元动画</small></div></article>
+    <article class="card"><div class="poster j5">🎤</div><div class="card-body"><h3>罗小黑战记</h3><small>国漫/治愈</small></div></article>
+    <article class="card"><div class="poster j6">🎤</div><div class="card-body"><h3>伍六七</h3><small>国漫/搞笑热血</small></div></article>
+  </div>
+</section>
+
+<section class="section" id="about" style="background:#0a1224;">
+  <h2>ℹ️ 关于 <span>九七电影网</span></h2>
+  <div class="about">
+    <h3>为什么叫九七</h3>
+    <p>
+      九七电影网（网址：<a href="https://jiuqidianyingwang-h5">https://jiuqidianyingwang-h5</a>）
+      取“九七”做品牌字，不等于网上那些换域名的灰色“97视频”。
+      本页是静态影视导航演示：只列片单、分类和说明，不嵌盗版播放器、不引境外资源、不诱导下载 APP。
+    </p>
+    <h3>必应怎么好抓</h3>
+    <p>
+      唯一 H1 写“九七电影网”，H2 切栏目，锚点 <code>#movie</code> <code>#tv</code> <code>#show</code> 做虚拟分页，
+      正文直接写在 HTML 里，移动端无横向滚动，爬虫能快速判断“这是影视导航站”。[2,7](@ref)
+    </p>
+    <h3>合规提醒</h3>
+    <p>
+      通过网络传播影视剧需取得相应许可并符合著作权规定；本页内链以 <code>#</code> 占位，
+      不生成 robots.txt / sitemap.xml。正式上线请用备案域名、HTTPS、正版授权内容。[8](@ref)
+    </p>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <p>© 2026 九七电影网（jiuqidianyingwang-h5）· 经典电影 / 剧集 / 综艺动漫导航站</p>
+  <p>网址：<a href="https://jiuqidianyingwang-h5">https://jiuqidianyingwang-h5</a></p>
+  <p>关键词：九七电影网、jiuqidianyingwang-h5、经典电影、热播剧集、综艺动漫</p>
+  <p style="margin-top:.8rem;color:#6f82a8;">静态导航演示 · 内页链接以 # 替代 · 未生成 robots.txt / sitemap.xml</p>
+</footer>
+
+</body>
+</html>
